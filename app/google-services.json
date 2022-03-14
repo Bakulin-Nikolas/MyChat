@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "666243129052",
+    "firebase_url": "https://chat-d0e76-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "chat-d0e76",
+    "storage_bucket": "chat-d0e76.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:666243129052:android:76bfbd65b6f7095693de19",
+        "android_client_info": {
+          "package_name": "com.nikolas.mychat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "666243129052-gfvjj2ad9cd25vja2st4a6eb2oeov8el.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkma2YJOnkVrMuMs8nwRd3odEf-vm0iCE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "666243129052-gfvjj2ad9cd25vja2st4a6eb2oeov8el.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
