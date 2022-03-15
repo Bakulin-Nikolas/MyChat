@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "666243129052-dr46nvlcgbmknoe996kf1dajb22pcg4i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nikolas.mychat",
+            "certificate_hash": "a37fb27725dac1526a498e156ea54de1e9b80aef"
+          }
+        },
+        {
           "client_id": "666243129052-gfvjj2ad9cd25vja2st4a6eb2oeov8el.apps.googleusercontent.com",
           "client_type": 3
         }
