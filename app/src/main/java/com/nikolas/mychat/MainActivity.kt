@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
@@ -15,6 +16,7 @@ import com.squareup.picasso.Picasso
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var adapter: UserAdapter
     lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,9 +28,16 @@ class MainActivity : AppCompatActivity() {
         val database = FirebaseDatabase.getInstance()
         val myRef = database.getReference("messages")
         binding.bSend.setOnClickListener {
-            myRef.setValue(binding.edMessage.text.toString())
+            myRef.child((myRef.push() ?: "chat") as String).setValue(User(auth.currentUser?.displayName, binding.edMessage.text.toString()))
         }
         onChangeListener(myRef)
+        initRcView()
+    }
+
+    private fun initRcView() = with(binding) {
+        adapter = UserAdapter()
+        rcView.layoutManager = LinearLayoutManager(this@MainActivity)
+        rcView.adapter = adapter
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -49,10 +58,14 @@ class MainActivity : AppCompatActivity() {
     private fun onChangeListener(dRef: DatabaseReference) {
         dRef.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
-                binding.apply {
-                    rcView.append("\n")
-                    rcView.append(snapshot.value.toString())
-                }
+               val list = ArrayList<User>()
+                for (s in snapshot.children) {
+                    val user = s.getValue(User::class.java)
+                    if(user != null) {
+                        list.add(user)
+                    }
+               }
+                adapter.submitList(list)
             }
 
             override fun onCancelled(error: DatabaseError) {
